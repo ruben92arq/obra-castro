@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Obra Castro – Cocinas C8 a C12</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏗️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ecebe6; --surface:#f7f6f2; --ink:#232220; --ink-2:#5f5c55; --line:#cfccc3;
+  --wood:#b8895c; --wood-soft:#e3cdb3; --green:#3f6b4a; --green-soft:#d5e2d6; --warn:#a4492c;
+  --on-dark:#f7f6f2;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#1b1a18; --surface:#25241f; --ink:#ecebe6; --ink-2:#a7a399; --line:#3d3b35;
+    --wood:#c99a6b; --wood-soft:#4a3a2a; --green:#7fb08a; --green-soft:#253a2b; --warn:#e08a6b;
+    --on-dark:#1b1a18; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1b1a18; --surface:#25241f; --ink:#ecebe6; --ink-2:#a7a399; --line:#3d3b35;
+  --wood:#c99a6b; --wood-soft:#4a3a2a; --green:#7fb08a; --green-soft:#253a2b; --warn:#e08a6b;
+  --on-dark:#1b1a18; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased}
+main{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+h1{font-stretch:75%;font-weight:800;font-size:clamp(30px,8vw,46px);line-height:1;margin:0;letter-spacing:-0.01em}
+.sub{color:var(--ink-2);margin:6px 0 0;font-size:15px}
+.save{font-size:13px;color:var(--ink-2);margin-top:4px;min-height:18px}
+.save.err{color:var(--warn)}
+
+/* Fachada */
+.facade{margin:22px 0 10px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 12px 10px}
+.grid{display:grid;grid-template-columns:34px repeat(5,1fr);gap:6px;align-items:stretch}
+.colh{text-align:center;font-weight:700;font-stretch:80%;font-size:15px;padding-bottom:2px}
+.colh small{display:block;font-weight:400;font-size:12px;color:var(--ink-2)}
+.floor{display:flex;align-items:center;justify-content:flex-end;padding-right:4px;font-size:13px;color:var(--ink-2);font-stretch:80%}
+.apt{appearance:none;border:1.5px dashed var(--line);background:transparent;color:var(--ink);border-radius:4px;min-height:52px;padding:6px 2px 5px;font:inherit;font-stretch:85%;font-weight:600;font-size:15px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;position:relative;transition:transform .12s ease}
+.apt:active{transform:scale(.96)}
+.apt:focus-visible,.btn:focus-visible,.step:focus-visible,.tg input:focus-visible+span,textarea:focus-visible{outline:2px solid var(--wood);outline-offset:2px}
+.apt .pay{display:flex;gap:3px;height:6px}
+.apt .pay i{width:6px;height:6px;border-radius:50%;border:1px solid currentColor;opacity:.55}
+.apt .pay i.on{background:currentColor;opacity:1}
+.apt[data-s="1"]{border-style:solid;border-color:var(--wood);background:repeating-linear-gradient(135deg,var(--wood-soft) 0 5px,transparent 5px 10px)}
+.apt[data-s="2"]{border:1.5px solid var(--wood);background:var(--wood);color:#fff}
+.apt[data-s="3"]{border:1.5px solid var(--ink);background:var(--ink);color:var(--on-dark)}
+.apt[data-s="4"]{border:1.5px solid var(--green);background:var(--green);color:#fff}
+.ground{height:4px;background:var(--ink);margin:8px 0 0 40px;border-radius:2px;opacity:.85}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--ink-2);margin:12px 2px 0}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+
+/* Números */
+.counts{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:18px}
+.count{text-align:left;padding:8px 8px 6px;border-top:3px solid var(--line)}
+.count b{display:block;font-size:24px;font-stretch:80%;line-height:1.05}
+.count span{font-size:12px;color:var(--ink-2);line-height:1.2;display:block}
+.money{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px}
+.box h2{font-size:17px;font-stretch:85%;margin:0 0 10px}
+.row{display:flex;justify-content:space-between;gap:8px;font-size:15px;padding:4px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row b{font-variant-numeric:tabular-nums}
+.row.big b{font-size:18px}
+.note{font-size:12.5px;color:var(--ink-2);margin:8px 0 0}
+
+/* Hoja de detalle */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.38);opacity:0;pointer-events:none;transition:opacity .18s}
+.scrim.open{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-width:560px;margin:0 auto;background:var(--surface);border-radius:14px 14px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .22s ease;max-height:88vh;overflow-y:auto;box-shadow:0 -6px 24px rgba(0,0,0,.18)}
+.sheet.open{transform:none}
+.sheet header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.sheet h3{margin:0;font-size:30px;font-stretch:75%;font-weight:800;line-height:1}
+.sheet .meta{color:var(--ink-2);font-size:14px;margin-top:4px}
+.btn{appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:6px;padding:8px 12px;font:inherit;font-size:14px;cursor:pointer}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 6px}
+.pill{font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid var(--line)}
+.step{appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:5px;padding:9px 2px;font:inherit;font-size:12.5px;font-stretch:85%;line-height:1.15;cursor:pointer;min-height:48px}
+.step.done{background:var(--wood-soft);border-color:var(--wood)}
+.step.cur{background:var(--ink);color:var(--on-dark);border-color:var(--ink);font-weight:700}
+.step.cur.fin{background:var(--green);border-color:var(--green);color:#fff}
+.dates{font-size:13px;color:var(--ink-2);min-height:18px}
+.tgs{margin-top:14px;display:grid;gap:8px}
+.tg{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;cursor:pointer}
+.tg input{position:absolute;opacity:0;width:1px;height:1px}
+.tg .box2{width:22px;height:22px;border:2px solid var(--ink-2);border-radius:5px;flex:none;display:grid;place-items:center}
+.tg input:checked+.box2{background:var(--ink);border-color:var(--ink)}
+.tg input:checked+.box2::after{content:"";width:6px;height:11px;border:solid var(--on-dark);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.tg input:disabled~*{opacity:.45}
+.tg .t{flex:1;font-size:15px}
+.tg .t small{display:block;color:var(--ink-2);font-size:12.5px}
+.tg .amt{font-weight:700;font-variant-numeric:tabular-nums}
+textarea{width:100%;margin-top:14px;min-height:76px;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--ink);font:inherit;font-size:15px;padding:10px;resize:vertical}
+label.lbl{display:block;font-size:13px;color:var(--ink-2);margin-top:14px}
+
+/* tareas */
+.apt .bar{display:flex;gap:2px;width:78%;height:5px}
+.apt .bar i{flex:1;border-radius:1px;background:currentColor;opacity:.22}
+.apt .bar i.on{opacity:1}
+.apt[data-s="0"] .bar i.on{background:var(--wood);opacity:1}
+.tasks{margin-top:14px;border:1px solid var(--line);border-radius:6px}
+.task{display:grid;grid-template-columns:1fr auto;gap:6px 10px;padding:10px 12px;border-bottom:1px solid var(--line);align-items:center}
+.task:last-child{border-bottom:0}
+.task .nm{font-size:15px}
+.task .nm small{display:block;color:var(--ink-2);font-size:12.5px}
+.task .usd{font-weight:700;font-variant-numeric:tabular-nums;font-size:15px}
+.who{grid-column:1/-1;display:flex;gap:6px}
+.chip{appearance:none;flex:1;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:7px 4px;font:inherit;font-size:13.5px;cursor:pointer;min-height:36px}
+.chip.on{background:var(--ink);color:var(--on-dark);border-color:var(--ink);font-weight:700}
+.chip.on.me{background:var(--wood);border-color:var(--wood);color:#fff}
+.chip:focus-visible{outline:2px solid var(--wood);outline-offset:2px}
+.approve{margin-top:14px}
+.people{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.me-line{margin-top:12px;font-size:14px;color:var(--ink-2)}
+.me-line b{color:var(--ink)}
+@media (max-width:420px){.people{grid-template-columns:1fr}}
+
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.who-am{font-size:13px;color:var(--ink-2);text-align:right}
+.linkbtn{appearance:none;background:none;border:0;color:var(--ink);text-decoration:underline;font:inherit;font-size:13px;cursor:pointer;padding:4px 0}
+.login{position:fixed;inset:0;background:var(--paper);display:flex;align-items:center;justify-content:center;padding:24px;z-index:20}
+.login form{width:100%;max-width:340px;display:grid;gap:12px}
+.login h2{font-stretch:75%;font-weight:800;font-size:38px;line-height:1;margin:0 0 6px}
+.login input{width:100%;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px;padding:12px;font:inherit;font-size:16px}
+.login button{appearance:none;border:0;background:var(--ink);color:var(--on-dark);border-radius:6px;padding:13px;font:inherit;font-weight:700;font-size:16px;cursor:pointer}
+.login .err{color:var(--warn);font-size:14px;min-height:20px;margin:0}
+.login .linkbtn{justify-self:start;font-size:14px}
+.prices{margin-top:12px;font-size:14px}
+.prices summary{cursor:pointer;color:var(--ink-2)}
+.prices .pg{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
+.prices label{font-size:13px;color:var(--ink-2);display:grid;gap:4px}
+.prices input{width:100%;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:5px;padding:8px 6px;font:inherit;font-size:15px}
+.prices .btn{margin-top:10px}
+@media (max-width:420px){
+  .counts{grid-template-columns:repeat(3,1fr);gap:4px 8px}
+  .count b{font-size:20px}
+  .money{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <div class="topbar">
+    <div>
+      <h1>Obra Castro</h1>
+      <p class="sub">Armado de 30 cocinas, tipologías C8 a C12</p>
+    </div>
+    <div class="who-am"><span id="who-email"></span><br><button class="linkbtn" id="logout" hidden>Cerrar sesión</button></div>
+  </div>
+  <div class="save" id="save" aria-live="polite"></div>
+
+  <section class="facade" aria-label="Apartamentos por piso">
+    <div class="grid" id="grid"></div>
+    <div class="ground" aria-hidden="true"></div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <section class="counts" id="counts" aria-label="Avance"></section>
+
+  <section class="money" id="castro-sec" hidden>
+    <div class="box" style="grid-column:1/-1">
+      <h2>Castro</h2>
+      <div id="castro"></div>
+      <p class="note">Montos sin IVA.</p>
+      <details class="prices" id="prices">
+        <summary>Precios por tipología</summary>
+        <div class="pg" id="prices-grid"></div>
+        <button class="btn" id="prices-save">Guardar precios</button>
+      </details>
+    </div>
+  </section>
+  <section class="people" id="people" aria-label="Pagos a trabajadores"></section>
+  <p class="me-line" id="me-line"></p>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-title">
+  <header>
+    <div>
+      <h3 id="sh-title">Apto</h3>
+      <div class="meta" id="sh-meta"></div>
+    </div>
+    <button class="btn" id="sh-close">Cerrar</button>
+  </header>
+  <div class="steps" id="sh-steps" aria-label="Estado"></div>
+  <div class="dates" id="sh-dates"></div>
+  <div class="tasks" id="sh-tasks"></div>
+  <div class="tgs">
+    <label class="tg"><input type="checkbox" id="tg-ap"><span class="box2"></span><span class="t">Aprobada por Castro<small>Autoriza el pago de la cocina</small></span></label>
+    <label class="tg" id="tg-c-row" hidden><input type="checkbox" id="tg-c"><span class="box2"></span><span class="t">Cobrado a Castro<small>Precio de la tipología, más IVA</small></span><span class="amt" id="tg-c-amt"></span></label>
+    <label class="tg"><input type="checkbox" id="tg-p1"><span class="box2"></span><span class="t">Pagado al aprobar<small id="tg-p1-sub">Armado, amurado, vistas, puertas y zócalos</small></span><span class="amt">90</span></label>
+    <label class="tg"><input type="checkbox" id="tg-p2"><span class="box2"></span><span class="t">Pagado ajustes finales<small id="tg-p2-sub">A quien hizo los ajustes</small></span><span class="amt">18</span></label>
+    <p class="note" id="owner-hint">La aprobación y los pagos los marca Rubén.</p>
+  </div>
+  <label class="lbl" for="sh-note">Notas de la cocina</label>
+  <textarea id="sh-note" placeholder="Faltantes, piezas dañadas, ajustes pendientes…"></textarea>
+</div>
+
+<script type="module">
+/* =========================================================
+   CONFIGURACIÓN — completá estos datos (ver README.md)
+   ========================================================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyCYWw_SAkKv1eIDbhhEE9mGpZcfInESoaI",
+  authDomain: "obra-castro.firebaseapp.com",
+  projectId: "obra-castro",
+  storageBucket: "obra-castro.firebasestorage.app",
+  messagingSenderId: "636360718854",
+  appId: "1:636360718854:web:ac3037800b3e14865ea187"
+};
+// Solo define qué ve la pantalla. La seguridad real está en firestore.rules.
+const OWNER_EMAIL = "ruben92arq@gmail.com";
+/* ========================================================= */
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const fs = getFirestore(app);
+
+const COLS=["C8","C9","C10","C11","C12"];
+const FLOORS=[{f:"5",p:"5"},{f:"4",p:"4"},{f:"3",p:"3"},{f:"2",p:"2"},{f:"1",p:"1"},{f:"PB",p:"0"}];
+const TASKS=[
+  {k:"armado",t:"Armado de módulos",usd:27},
+  {k:"amurado",t:"Amurado",sub:"Nivelar y fijar",usd:22},
+  {k:"vistas",t:"Vistas y ajustes",sub:"A pared, a techo y entre módulos",usd:18},
+  {k:"puertas",t:"Puertas y regulación",usd:14},
+  {k:"zocalos",t:"Zócalos",usd:9},
+  {k:"ajustes",t:"Ajustes finales",sub:"Antes de retirarnos de la obra",usd:18,final:true}
+];
+const BASE=TASKS.filter(t=>!t.final);
+const PEOPLE=[{k:"lester",n:"Lester"},{k:"emilio",n:"Emilio"},{k:"ruben",n:"Rubén",me:true}];
+const WORKERS=PEOPLE.filter(p=>!p.me);
+const STATES=["Pendiente","En armado","Armada","Aprobada","Finalizada"];
+const aptNum=(p,i)=>p+String((p==="0"?4:7)+i).padStart(2,"0"); // PB: 004–008, pisos: x07–x11
+const UNITS=[];
+FLOORS.forEach(fl=>COLS.forEach((c,i)=>UNITS.push({id:aptNum(fl.p,i),tipo:c,floor:fl.f})));
+
+/* Firestore:
+   obra/estado    -> tareas y notas (escriben todos)
+   obra/pagos     -> aprobación y pagos (solo Rubén escribe)
+   privado/castro -> precios y cobros (solo Rubén lee y escribe) */
+const REF={estado:doc(fs,"obra","estado"),pagos:doc(fs,"obra","pagos"),priv:doc(fs,"privado","castro")};
+let est={},pag={},priv={precios:null,cobrado:{}};
+function resetData(){est={};pag={};priv={precios:null,cobrado:{}};
+  UNITS.forEach(u=>{est[u.id]={t:{},n:"",ff:""};pag[u.id]={ap:false,fa:"",p1:false,p2:false}})}
+resetData();
+let owner=false,current=null,unsubs=[];
+
+const $=id=>document.getElementById(id);
+const fmt=n=>"USD "+n.toLocaleString("es-UY",{minimumFractionDigits:0,maximumFractionDigits:2});
+const today=()=>new Date().toLocaleDateString("es-UY",{day:"2-digit",month:"2-digit",year:"numeric"});
+const pname=k=>(PEOPLE.find(p=>p.k===k)||{}).n||"";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function setSave(t,err){const el=$("save");el.textContent=t;el.classList.toggle("err",!!err)}
+const price=tipo=>owner&&priv.precios?Number(priv.precios[tipo])||0:null;
+
+function status(id){const e=est[id],p=pag[id];
+  const done=BASE.filter(t=>e.t[t.k]).length;
+  if(p.ap&&e.t.ajustes)return 4; if(p.ap)return 3;
+  if(done===BASE.length)return 2; if(done>0||e.t.ajustes)return 1; return 0}
+
+/* ---------- render ---------- */
+function buildGrid(){
+  const g=$("grid");let h='<div></div>';
+  COLS.forEach(c=>h+=`<div class="colh">${c}<small class="pr" data-c="${c}"></small></div>`);
+  FLOORS.forEach(fl=>{
+    h+=`<div class="floor">${fl.f}</div>`;
+    COLS.forEach((c,i)=>{const id=aptNum(fl.p,i);h+=`<button class="apt" id="a-${id}" data-id="${id}"><span>${id}</span><span class="bar">${TASKS.map(()=>"<i></i>").join("")}</span></button>`});
+  });
+  g.innerHTML=h;
+  g.addEventListener("click",e=>{const b=e.target.closest(".apt");if(b)openSheet(b.dataset.id)});
+  $("legend").innerHTML=[
+    ['Pendiente','border:1.5px dashed var(--line)'],
+    ['En armado','background:repeating-linear-gradient(135deg,var(--wood-soft) 0 3px,transparent 3px 6px);border:1.5px solid var(--wood)'],
+    ['Armada','background:var(--wood)'],['Aprobada por Castro','background:var(--ink)'],['Finalizada','background:var(--green)']
+  ].map(([t,s])=>`<span><i class="sw" style="${s}"></i>${t}</span>`).join("")+'<span>La barrita muestra las 6 tareas</span>';
+  $("prices-grid").innerHTML=COLS.map(c=>`<label>${c}<input type="number" inputmode="decimal" min="0" step="1" data-c="${c}"></label>`).join("");
+}
+function earnings(){
+  const e={};PEOPLE.forEach(p=>e[p.k]={gan:0,pag:0,hecho:0,aptos:new Set()});
+  UNITS.forEach(u=>{const s=est[u.id],p=pag[u.id];
+    TASKS.forEach(t=>{const w=s.t[t.k];if(!w||!e[w])return;
+      e[w].hecho+=t.usd;e[w].aptos.add(u.id);
+      if(p.ap&&(!t.final||s.t.ajustes))e[w].gan+=t.usd;
+      if(!t.final&&p.p1)e[w].pag+=t.usd;
+      if(t.final&&p.p2)e[w].pag+=t.usd;})});
+  return e;
+}
+const row=(t,v,big)=>`<div class="row${big?" big":""}"><span>${t}</span><b>${fmt(v)}</b></div>`;
+function render(){
+  document.querySelectorAll(".pr").forEach(el=>el.textContent=price(el.dataset.c)??"");
+  UNITS.forEach(u=>{const s=status(u.id),b=$("a-"+u.id);b.dataset.s=s;
+    b.querySelectorAll(".bar i").forEach((i,k)=>i.classList.toggle("on",!!est[u.id].t[TASKS[k].k]));
+    b.setAttribute("aria-label",`Apto ${u.id}, ${u.tipo}, ${STATES[s]}`)});
+  const by=k=>UNITS.filter(u=>status(u.id)===k).length, atLeast=k=>UNITS.filter(u=>status(u.id)>=k).length;
+  $("counts").innerHTML=[["Pendientes",by(0),"var(--line)"],["En armado",by(1),"var(--wood-soft)"],["Armadas",atLeast(2),"var(--wood)"],["Aprobadas",atLeast(3),"var(--ink)"],["Finalizadas",by(4),"var(--green)"]]
+    .map(([t,n,c])=>`<div class="count" style="border-top-color:${c}"><b>${n}</b><span>${t}</span></div>`).join("");
+  $("castro-sec").hidden=!owner;
+  if(owner){
+    if(priv.precios){let apr=0,cob=0,tot=0;
+      UNITS.forEach(u=>{const pr=price(u.tipo);tot+=pr;if(pag[u.id].ap)apr+=pr;if(priv.cobrado[u.id])cob+=pr});
+      $("castro").innerHTML=row("Total de la obra",tot)+row("Aprobado",apr)+row("Cobrado",cob)+row("Aprobado sin cobrar",apr-cob,1);
+    } else { $("castro").innerHTML='<p class="note">Cargá los precios por tipología para ver los totales.</p>'; $("prices").open=true; }
+    document.querySelectorAll("#prices-grid input").forEach(i=>{if(document.activeElement!==i)i.value=priv.precios?.[i.dataset.c]??""});
+  }
+  const e=earnings();
+  $("people").innerHTML=WORKERS.map(p=>{const x=e[p.k];return `<div class="box"><h2>${p.n}</h2>${row("Trabajo hecho",x.hecho)}${row("Ganado (aprobado)",x.gan)}${row("Pagado",x.pag)}${row("A pagar",x.gan-x.pag,1)}<p class="note">${x.aptos.size} ${x.aptos.size===1?"apto":"aptos"} con tareas suyas</p></div>`}).join("");
+  $("me-line").hidden=!owner;
+  $("me-line").innerHTML=`Tareas hechas por vos: <b>${fmt(e.ruben.hecho)}</b>, no se pagan y quedan para RHR.`;
+  if(current)fillSheet();
+}
+
+/* ---------- hoja del apto ---------- */
+function openSheet(id){current=id;fillSheet();$("sheet").classList.add("open");$("scrim").classList.add("open");setTimeout(()=>$("sh-close").focus(),50)}
+function closeSheet(){commitNote();current=null;$("sheet").classList.remove("open");$("scrim").classList.remove("open")}
+function fillSheet(){
+  const u=UNITS.find(x=>x.id===current),e=est[current],p=pag[current],s=status(current);
+  $("sh-title").textContent="Apto "+u.id;
+  $("sh-meta").textContent=`Cocina ${u.tipo}, piso ${u.floor}`;
+  $("sh-steps").innerHTML=`<span class="pill" style="${s>=3?'background:var(--'+(s===4?'green':'ink')+');color:'+(s===4?'#fff':'var(--on-dark)')+';border-color:transparent':''}">${STATES[s]}</span>`;
+  const d=[];if(p.fa)d.push("Aprobada el "+p.fa);if(e.ff)d.push("Ajustes finales el "+e.ff);$("sh-dates").textContent=d.join(". ");
+  $("sh-tasks").innerHTML=TASKS.map(t=>`<div class="task"><span class="nm">${t.t}${t.sub?`<small>${t.sub}</small>`:""}</span><span class="usd">${t.usd}</span><div class="who" role="group" aria-label="Quién hizo ${t.t}">${PEOPLE.map(q=>`<button class="chip${e.t[t.k]===q.k?" on":""}${q.me?" me":""}" data-task="${t.k}" data-p="${q.k}" aria-pressed="${e.t[t.k]===q.k}">${q.n}</button>`).join("")}</div></div>`).join("");
+  $("tg-ap").checked=p.ap;$("tg-p1").checked=p.p1;$("tg-p2").checked=p.p2;
+  const showC=owner&&priv.precios;
+  $("tg-c-row").hidden=!showC;
+  if(showC){$("tg-c").checked=!!priv.cobrado[current];$("tg-c-amt").textContent=price(u.tipo);$("tg-c").disabled=!p.ap}
+  const split={};BASE.forEach(t=>{const w=e.t[t.k];if(w&&w!=="ruben")split[w]=(split[w]||0)+t.usd});
+  const sp=Object.entries(split).map(([k,v])=>`${pname(k)} ${v}`).join(", ");
+  $("tg-p1-sub").textContent=sp?`A pagar: ${sp}`:"Asigná las tareas para ver el reparto";
+  $("tg-p2-sub").textContent=e.t.ajustes?(e.t.ajustes==="ruben"?"Los hiciste vos, no se paga":`A ${pname(e.t.ajustes)}`):"A quien hizo los ajustes";
+  $("tg-ap").disabled=!owner;$("tg-p1").disabled=!owner||!p.ap;$("tg-p2").disabled=!owner||!p.ap||!e.t.ajustes;
+  $("owner-hint").hidden=owner;
+  const ta=$("sh-note");if(document.activeElement!==ta)ta.value=e.n;
+}
+$("sh-tasks").addEventListener("click",ev=>{const b=ev.target.closest(".chip");if(!b||!current)return;
+  const e=JSON.parse(JSON.stringify(est[current]));const k=b.dataset.task,p=b.dataset.p;
+  e.t[k]=e.t[k]===p?"":p;
+  if(k==="ajustes")e.ff=e.t.ajustes?(e.ff||today()):"";
+  est[current]=e;
+  if(k==="ajustes"&&!e.t.ajustes&&pag[current].p2&&owner){pag[current]={...pag[current],p2:false};save("pagos",current,pag[current])}
+  render();save("estado",current,e)});
+$("tg-ap").addEventListener("change",ev=>{if(!current||!owner)return;const p={...pag[current],ap:ev.target.checked};
+  p.fa=p.ap?(p.fa||today()):"";
+  if(!p.ap){p.p1=false;p.p2=false;if(priv.cobrado[current]){priv.cobrado={...priv.cobrado,[current]:false};savePriv({cobrado:{[current]:false}})}}
+  pag[current]=p;render();save("pagos",current,p)});
+[["tg-p1","p1"],["tg-p2","p2"]].forEach(([id,key])=>$(id).addEventListener("change",ev=>{if(!current||!owner)return;pag[current]={...pag[current],[key]:ev.target.checked};render();save("pagos",current,pag[current])}));
+$("tg-c").addEventListener("change",ev=>{if(!current||!owner)return;const v=ev.target.checked;priv.cobrado={...priv.cobrado,[current]:v};render();savePriv({cobrado:{[current]:v}})});
+let noteTimer=null;
+$("sh-note").addEventListener("input",()=>{clearTimeout(noteTimer);noteTimer=setTimeout(commitNote,900)});
+$("sh-note").addEventListener("blur",commitNote);
+function commitNote(){clearTimeout(noteTimer);if(!current)return;const v=$("sh-note").value;if(v!==est[current].n){est[current]={...est[current],n:v};render();save("estado",current,est[current])}}
+$("sh-close").addEventListener("click",closeSheet);$("scrim").addEventListener("click",closeSheet);
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&current)closeSheet()});
+$("prices-save").addEventListener("click",()=>{if(!owner)return;const precios={};
+  document.querySelectorAll("#prices-grid input").forEach(i=>{const v=parseFloat(i.value);if(!isNaN(v))precios[i.dataset.c]=v});
+  if(Object.keys(precios).length<COLS.length){setSave("Completá los cinco precios.",1);return}
+  priv={...priv,precios};render();savePriv({precios});$("prices").open=false});
+
+/* ---------- guardado en Firestore ---------- */
+let queue=Promise.resolve();
+function enqueue(fn){setSave("Guardando…");queue=queue.then(async()=>{try{await fn();setSave("Guardado")}catch(e){
+  setSave(e&&e.code==="permission-denied"?"No tenés permiso para cambiar esto.":"No se pudo guardar. Revisá la conexión y volvé a intentar.",1)}})}
+function save(name,id,val){enqueue(()=>setDoc(REF[name],{units:{[id]:val}},{merge:true}))}
+function savePriv(patch){enqueue(()=>setDoc(REF.priv,patch,{merge:true}))}
+function mergeU(target,units){if(!units)return;UNITS.forEach(u=>{const x=units[u.id];if(x)target[u.id]={...target[u.id],...x,...(x.t?{t:{...x.t}}:{})}})}
+
+function listen(name){
+  return onSnapshot(REF[name],snap=>{
+    if(!snap.exists())return;const d=snap.data()||{};
+    if(name==="estado")mergeU(est,d.units);
+    else if(name==="pagos")mergeU(pag,d.units);
+    else priv={precios:d.precios||null,cobrado:{...(d.cobrado||{})}};
+    render();
+  },err=>{
+    if(err.code==="permission-denied"){
+      if(name!=="priv"){setSave("Tu usuario no tiene acceso a esta obra. Pedile a Rubén que te habilite.",1)}
+    } else setSave("Sin conexión con la base de datos.",1);
+  });
+}
+
+/* ---------- sesión ---------- */
+$("login-form").addEventListener("submit",async ev=>{ev.preventDefault();$("lg-err").textContent="";$("lg-btn").disabled=true;
+  try{await signInWithEmailAndPassword(auth,$("lg-email").value.trim(),$("lg-pass").value)}
+  catch(e){$("lg-err").textContent=["auth/invalid-credential","auth/wrong-password","auth/user-not-found","auth/invalid-email"].includes(e.code)?"Correo o contraseña incorrectos.":"No se pudo entrar. Revisá la conexión y volvé a intentar."}
+  finally{$("lg-btn").disabled=false}});
+$("logout").addEventListener("click",()=>signOut(auth));
+$("lg-reset").addEventListener("click",async()=>{const email=$("lg-email").value.trim();const out=$("lg-err");
+  if(!email){out.textContent="Escribí tu correo y volvé a tocar este botón.";$("lg-email").focus();return}
+  try{auth.languageCode="es";await sendPasswordResetEmail(auth,email);
+    out.textContent="Te mandamos un correo para elegir tu contraseña. Si no lo ves, revisá la carpeta de spam."}
+  catch(e){out.textContent=e.code==="auth/invalid-email"?"Ese correo no es válido.":"No se pudo enviar el correo. Revisá la conexión y volvé a intentar."}});
+
+buildGrid();render();
+onAuthStateChanged(auth,user=>{
+  unsubs.forEach(f=>f());unsubs=[];resetData();if(current)closeSheet();
+  if(!user){owner=false;$("login").hidden=false;$("logout").hidden=true;$("who-email").textContent="";render();return}
+  $("login").hidden=true;$("logout").hidden=false;$("who-email").textContent=user.email;
+  owner=(user.email||"").toLowerCase()===OWNER_EMAIL.toLowerCase();
+  unsubs.push(listen("estado"),listen("pagos"));
+  if(owner)unsubs.push(listen("priv"));
+  setSave("");render();
+});
+</script>
+<div class="login" id="login">
+  <form id="login-form">
+    <h2>Obra Castro</h2>
+    <input type="email" id="lg-email" placeholder="Correo" autocomplete="username" required>
+    <input type="password" id="lg-pass" placeholder="Contraseña" autocomplete="current-password" required>
+    <button type="submit" id="lg-btn">Entrar</button>
+    <p class="err" id="lg-err" aria-live="polite"></p>
+    <button type="button" class="linkbtn" id="lg-reset">Crear o cambiar mi contraseña</button>
+  </form>
+</div>
+
+</body>
+</html>
